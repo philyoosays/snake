@@ -1,0 +1,23 @@
+div {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  padding: 0;
+  vertical-align: top;
+}
+.container {
+  width: 440px;
+  height: 440px;
+  display: block;
+  margin: 0 auto;
+}
+.snake {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.apple {
+  border: 2px solid black;
+  box-sizing: border-box;
+}
+
+
