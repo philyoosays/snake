@@ -1,4 +1,4 @@
-div {
+.border, .board {
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -11,13 +11,101 @@ div {
   display: block;
   margin: 0 auto;
 }
+
+h1, h2, p {
+  font-family: 'Press Start 2P', serif;
+  color: white;
+  text-align: center;
+}
+
+hr {
+  width: 200px;
+}
+
+h1 {
+  font-size: 60px;
+  margin: 40px 0 40px 0;
+}
+
+h2 {
+  margin: 20px 0 0 0;
+}
+
+input {
+  display: block;
+  margin: 0 auto;
+}
+
+.jar {
+  margin: 150px 0;
+}
+
+.scores > div {
+  display: inline-block;
+  width: 180px;
+  height: 130px;
+  margin: 0 10px;
+}
+
+.scores p {
+  font-size: 12px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.playername {
+  display: inline-block;
+  float: left;
+  margin: 2px 0;
+}
+
+.playerscore {
+  display: inline-block;
+  float: right;
+  margin: 2px 0;
+}
+
+.scores {
+  width: 400px;
+  height: 200px;
+  margin: 0;
+}
+
+.buttons {
+  display: block;
+  width: 300px;
+  height: 60px;
+  margin: 0 50px;
+}
+
+.border {
+  background: gray;
+}
+
+.board {
+  background: black;
+}
+
 .snake {
   border: 1px solid black;
   box-sizing: border-box;
+  background: lime;
 }
 .apple {
   border: 2px solid black;
   box-sizing: border-box;
+  background: red;
+}
+
+.screen{
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  margin: 20px;
 }
 
 
