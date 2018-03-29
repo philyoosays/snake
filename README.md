@@ -97,9 +97,9 @@ For each death scenario, the lives left counter will be subtracted from and once
 | Component | Priority | Estimated Time | Actual Time |
 | --- | :---: |  :---: | :---: |
 | Convert to JQuery | H | 2hr | 1hr |
-| Landing Page | H | 1hr |  |
-| Username Page | H | .5hr |  |
-| the "blinking" error | H | 1hr |  |
+| Landing Page | H | 1hr | 1hr |
+| Username Page | H | .5hr | .5hr |
+| the "blinking" error | H | 1hr | .5h |
 | Ending Screen | H | 1hr |  |
 | Cellphone screens | H | 1hr |  |
 | Highscore List | H | 1hr |  |

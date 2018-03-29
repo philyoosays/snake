@@ -2,7 +2,7 @@
 let gameSpeed = 10;
 let grid = 20;
 let tail = 5;
-let lives = 2;
+let lives = 3;
 let scoreHistory = [{ name: 'Jim', score: 30 }, { name: 'Phil', score: 50 }, { name: 'Gamer', score: 14 }, { name: 'Jimbo', score: 28 }, { name: 'Jim', score: 30 }, { name: 'Phil', score: 50 }, { name: 'Gamer', score: 14 }, { name: 'Jimbo', score: 28 }, { name: 'Gamer', score: 14 }, { name: 'Jimbo', score: 28 }, { name: 'Jim', score: 30 }, { name: 'Phil', score: 50 }, { name: 'Gamer', score: 14 }, { name: 'Jimbo', score: 28 }];
 let trail = [];
 let apple = { x: Math.floor(Math.random() * grid) + 1, y: Math.floor(Math.random() * grid) + 1 };
@@ -11,6 +11,7 @@ let velocity = { x: 0, y: 0 };
 let snakeStart = false;
 let playerName;
 let theScore = 0;
+let fps;
 
 function createBoard() {
   for (let y = 0; y < grid + 2; y += 1) {
@@ -119,6 +120,7 @@ function game() {
   if (lives > 0) {
     snake();
   } else {
+    clearInterval(fps);
     gameOver();
   }
 }
@@ -126,13 +128,13 @@ function game() {
 window.onload = function () {
   createBoard();
   $(document).keydown(keyPress);
-  // setInterval(game, 1000 / gameSpeed);
   landingPage();
 }
 
 function landingPage() {
   $('.screen').empty();
-  let screen = $('.screen')
+  $(document).unbind('keydown', landingPage);
+  let screen = $('.screen');
   let title = $('<h1>').html('SNAKE');
   let buttons = $('<div>').addClass('buttons');
   let newGame = $('<p>').html('NEW GAME');
@@ -167,21 +169,41 @@ function nameScreen() {
   let input = $('<input>');
   let button = $('<h2>').html('SUBMIT');
   button.click(startGame);
+  input.keydown((button) => {
+    if(button.keyCode === 13) {
+      console.log('start pressed')
+      startGame();
+    }
+  });
   label.appendTo(container);
   input.appendTo(container);
   button.appendTo(container);
 }
 
 function startGame() {
+  console.log('startgame')
   playerName = $('input').val();
   $('.screen').empty();
-  setInterval(game, 1000 / gameSpeed);
+  fps = setInterval(game, 1000 / gameSpeed);
 }
 
 function gameOver() {
   let entry = { name: playerName, score: theScore, id: scoreHistory.length};
   scoreHistory.push(entry);
-  landingPage();
+  reset();
+  let lives = 3;
+  $('.apple').removeClass('apple');
+  let container = $('<div>').addClass('buttons');
+  container.css('height', '100px');
+  container.appendTo('.screen');
+  let message = $('<h2>').html('GAME OVER!');
+  let displayScore = $('<p>').html(`Score: ${theScore}`);
+  let homeButton = $('<p>').html('HOME');
+  homeButton.click(landingPage);
+  $(document).keydown(landingPage);
+  message.appendTo('.buttons');
+  displayScore.appendTo('.buttons');
+  homeButton.appendTo('.buttons');
 }
 
 function optionScreen() {
@@ -189,10 +211,9 @@ function optionScreen() {
 }
 
 function sortScore() {
-  let ref = [];
-  for (let i = 0; i < scoreHistory.length; i += 1) {
-
-  }
+  scoreHistory.sort((a, b) => {
+    return -a.score + b.score;
+  });
 }
 
 function highScore() {
